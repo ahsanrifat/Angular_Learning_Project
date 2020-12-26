@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Recipe } from '../../recipes.model';
 
 @Component({
@@ -9,9 +9,15 @@ import { Recipe } from '../../recipes.model';
 export class RecipeItemComponent implements OnInit {
   // goal is to get the recipe from outside. @Input allows us bind this from outside
   @Input() recipe: Recipe;
+  // to get the selected recipe event
+  // @Output -> to listen to this event from outside
+  @Output() recipeSelected = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  onSelectRecipe() {
+    this.recipeSelected.emit();
+    console.log("A Single Recipe Was Clicked")
+  }
 }

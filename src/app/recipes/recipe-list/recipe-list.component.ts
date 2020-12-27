@@ -20,7 +20,7 @@ export class RecipeListComponent implements OnInit {
   }
   onRecipeSelectedList(selectedRecipe: Recipe) {
     this.recipeWasSelected.emit(selectedRecipe);
-    console.log("On recipe Selected passed to recipe-list component", selectedRecipe);
+    // console.log("On recipe Selected passed to recipe-list component", selectedRecipe);
   }
 }
 

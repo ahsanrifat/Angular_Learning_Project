@@ -12,5 +12,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  setSelectedRecipe(recipe: Recipe) {
+    this.selectedRecipe = recipe;
+  }
 }

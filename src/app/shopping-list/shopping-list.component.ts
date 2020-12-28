@@ -5,8 +5,7 @@ import { ShoppingListService } from './shopping-list.service';
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css'],
-  providers: [ShoppingListService]
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[] = [];
@@ -14,10 +13,14 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
+    this.shoppingListService.ingredientChangedEvent
+      .subscribe((ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
+      })
   }
-  onIngredientAdded(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    // working fine
-    // console.log("Got new ingredient from child shopping edit comp", ingredient);
-  }
+  // onIngredientAdded(ingredient: Ingredient) {
+  //   this.ingredients.push(ingredient);
+  //   // working fine
+  //   // console.log("Got new ingredient from child shopping edit comp", ingredient);
+  // }
 }

@@ -8,18 +8,18 @@ export class RecipeService {
 
   recipeSelectedEvent = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
-    new Recipe("recipe 01", "test recipe",
+    new Recipe("Nutty Sweet Delish", "test recipe",
       "https://hips.hearstapps.com/delish/assets/17/39/1506456246-delish-healthy-chicken-casserole-1.jpg",
-      [new Ingredient("Sauce", 5), new Ingredient("Fries", 10), new Ingredient("Pasta", 2)]),
-    new Recipe("recipe 02", "test recipe",
+      [new Ingredient("Nuts", 5), new Ingredient("Milk", 10), new Ingredient("Cream", 2)]),
+    new Recipe("Soya Pron Stick", "test recipe",
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-taco-lime-shrimp-still006-1527253576.jpeg",
-      [new Ingredient("Sauce", 5), new Ingredient("Meat", 5), new Ingredient("Wheat", 5)]),
-    new Recipe("recipe 03", "test recipe",
+      [new Ingredient("Sauce", 5), new Ingredient("Pron", 5), new Ingredient("Oil", 5)]),
+    new Recipe("Brownie Blast", "test recipe",
       "https://cdn.loveandlemons.com/wp-content/uploads/2020/03/baking-recipes-1.jpg",
-      [new Ingredient("Flour", 5), new Ingredient("Chilli", 5), new Ingredient("Onion", 5)]),
-    new Recipe("recipe 04", "test recipe",
+      [new Ingredient("Flour", 5), new Ingredient("Coco powder", 5), new Ingredient("Sugar", 5)]),
+    new Recipe("Fruit Salsa", "test recipe",
       "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2019%2F11%2Fcranberry-salad.jpg",
-      [new Ingredient("Garlic", 5), new Ingredient("Sauce", 5), new Ingredient("Egg Plant", 5)]),
+      [new Ingredient("Strawberry", 5), new Ingredient("Mango", 5), new Ingredient("Pine Apple", 5)]),
   ];
   constructor() { }
   getRecipes() {

@@ -20,7 +20,7 @@ export class RecipeItemComponent implements OnInit {
   ngOnInit(): void {
   }
   onSelectRecipe() {
-    this.recipeService.recipeSelected.emit(this.recipe);
+    this.recipeService.recipeSelectedEvent.emit(this.recipe);
     // console.log("----Recipe Item----")
     // console.log(this.recipeService.recipeSelected);
     // console.log("A Single Recipe Was Clicked", this.recipe);

@@ -12,7 +12,7 @@ export class RecipesComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipeService.recipeSelected
+    this.recipeService.recipeSelectedEvent
       .subscribe(
         (recipe: Recipe) => {
           console.log(recipe);

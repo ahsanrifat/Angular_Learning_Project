@@ -6,7 +6,7 @@ import { Recipe } from './recipes.model';
 // { providedIn: 'root' }
 export class RecipeService {
 
-  recipeSelectedEvent = new EventEmitter<Recipe>();
+  @Output() recipeSelectedEvent = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe("recipe 01", "test recipe",
       "https://hips.hearstapps.com/delish/assets/17/39/1506456246-delish-healthy-chicken-casserole-1.jpg",

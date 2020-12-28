@@ -2,8 +2,8 @@ import { Ingredient } from '../shared/ingredient.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from './recipes.model';
 
-@Injectable({ providedIn: 'root' })
-
+@Injectable()
+// { providedIn: 'root' }
 export class RecipeService {
 
   recipeSelectedEvent = new EventEmitter<Recipe>();

@@ -22,11 +22,16 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
+    <h3>Description</h3>
     {{recipe_detail.description}}
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Ingredients
+    <h3>Ingredients</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ingredient of recipe_detail.ingredients">
+        {{ingredient.name}}({{ingredient.amount}})</li>
+    </ul>
   </div>
 </div>

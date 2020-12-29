@@ -6,7 +6,7 @@ import { Recipe } from './recipes.model';
 // { providedIn: 'root' }
 export class RecipeService {
 
-  recipeSelectedEvent = new EventEmitter<Recipe>();
+  // recipeSelectedEvent = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe("Nutty Sweet Delish", "test recipe",
       "https://hips.hearstapps.com/delish/assets/17/39/1506456246-delish-healthy-chicken-casserole-1.jpg",
@@ -25,5 +25,8 @@ export class RecipeService {
   getRecipes() {
     // slice return another object of the array so that main recipe array can not be modified from outside
     return this.recipes.slice();
+  }
+  getSingleRecipe(index: number) {
+    return this.recipes[index];
   }
 }

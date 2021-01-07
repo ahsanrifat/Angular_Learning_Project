@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit, OnDestroy{
+export class ShoppingEditComponent implements OnInit, OnDestroy {
   // child view reference to get the data from template
   // @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
   // @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
@@ -30,9 +30,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
           this.editMode = true;
           this.editedItemIndex = index;
           this.editedItem = this.shoppingListService.getAnIngredient(index);
-          console.log(this.editedItem)
-          console.log(this.shoppingListForm.value)
-          // this.shoppingListForm.setValue(this.editedItem)
           this.shoppingListForm.setValue({
             name: this.editedItem.name,
             amount: this.editedItem.amount
@@ -53,6 +50,16 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
     // console.log("New Ingredient shopping edit comp", newIngredient);
 
     const newIngredient = new Ingredient(data['name'], data['amount']);
-    this.shoppingListService.addIngredient(newIngredient);
+    if (!this.editMode) {
+      this.shoppingListService.addIngredient(newIngredient);
+    } else {
+      this.shoppingListService.updateAnIngredient(newIngredient, this.editedItemIndex);
+      this.editMode = false;
+      this.shoppingListForm.reset();
+    }
+  }
+  onClear() {
+    this.editMode = false;
+    this.shoppingListForm.reset();
   }
 }

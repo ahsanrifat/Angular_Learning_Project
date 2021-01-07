@@ -36,6 +36,7 @@ export class RecipeDetailComponent implements OnInit {
     this.shoppingListService.addMultipleIngredients(this.recipe_detail.ingredients);
   }
   onEachRecipeEditClickedRoute() {
+    this.recipeService.eachRecipeEditEvent.emit(this.id)
     this.mainRoute.navigate(['edit'], { relativeTo: this.route });
   }
 

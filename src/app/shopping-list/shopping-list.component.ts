@@ -24,6 +24,9 @@ export class ShoppingListComponent implements OnInit {
   ngOnDestroy(): void {
     this.igChangeSub.unsubscribe();
   }
+  onEditItem(index: number) {
+    this.shoppingListService.editIngredientEvent.next(index)
+  }
   // onIngredientAdded(ingredient: Ingredient) {
   //   this.ingredients.push(ingredient);
   //   // working fine

@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 //
 export class ShoppingListService {
   // Event emitter to inform component about the new ingredient adding
+  editIngredientEvent = new Subject<number>();
   ingredientChangedEvent = new Subject<Ingredient[]>();
   private ingredients: Ingredient[] = [
     new Ingredient("Apple", 5),
@@ -14,6 +15,9 @@ export class ShoppingListService {
   constructor() { }
   getIngredients() {
     return this.ingredients.slice();
+  }
+  getAnIngredient(index: number) {
+    return this.ingredients[index];
   }
   addIngredient(newIngredient: Ingredient) {
     this.ingredients.push(newIngredient);

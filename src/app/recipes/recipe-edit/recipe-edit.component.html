@@ -38,24 +38,48 @@
               type="text"
               id="description"
               class="form-control"
-              formGroupName="description"
+              formControlName="description"
             ></textarea>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div
+            style="padding-top: 10px"
+            class="row"
+            *ngFor="
+              let ingredient of recipeForm.get('ingredients').controls;
+              let i = index
+            "
+            [formArrayName]="i"
+          >
             <div class="col-xs-8">
-              <input type="text" id="ingredient" class="form-control" />
+              <input
+                type="text"
+                id="ingredient"
+                class="form-control"
+                formControlName="name"
+              />
             </div>
             <div class="col-xs-2">
-              <input type="number" id="amount" class="form-control" />
+              <input
+                type="number"
+                id="amount"
+                class="form-control"
+                formControlName="amount"
+              />
             </div>
             <div class="col-xs-2">
               <button type="submit" class="btn btn-danger">X</button>
             </div>
           </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" (click)="onAddIngredient()">Add Ingredients</button>
         </div>
       </div>
       <div class="row" style="padding-top: 20px">

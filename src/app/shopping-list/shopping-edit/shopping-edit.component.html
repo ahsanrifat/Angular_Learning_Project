@@ -33,7 +33,13 @@
           <button class="btn btn-success" type="submit" [disabled]="!f.valid">
             {{ editMode ? "Update" : "Add" }}
           </button>
-          <button class="btn btn-danger" type="button" style="margin-left: 3px">
+          <button
+            class="btn btn-danger"
+            type="button"
+            style="margin-left: 3px"
+            [disabled]="!editMode"
+            (click)="onDelete()"
+          >
             Delete
           </button>
           <button

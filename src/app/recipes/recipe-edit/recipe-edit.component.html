@@ -49,7 +49,7 @@
             style="padding-top: 10px"
             class="row"
             *ngFor="
-              let ingredient of recipeForm.get('ingredients').controls;
+              let ingredient of recipeForm.get('ingredients').value;
               let i = index
             "
             [formArrayName]="i"
@@ -94,6 +94,7 @@
             type="submit"
             class="btn btn-success"
             [disabled]="!recipeForm.valid"
+            (click)="onSubmit()"
           >
             Submit
           </button>

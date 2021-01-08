@@ -5,7 +5,7 @@ import { Recipe } from './recipes.model';
 @Injectable()
 // { providedIn: 'root' }
 export class RecipeService {
-  // @Output() eachRecipeEditEvent = new EventEmitter<number>();
+  observeRecipeArrayChangeEvent = new EventEmitter();
   // recipeSelectedEvent = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe("Nutty Sweet Delish", "test recipe",
@@ -28,5 +28,17 @@ export class RecipeService {
   }
   getSingleRecipe(index: number) {
     return this.recipes[index];
+  }
+  addNewRecipe(newRecipe: Recipe) {
+    // console.log(newRecipe)
+    this.recipes.push(newRecipe);
+    this.observeRecipeArrayChangeEvent.emit();
+  }
+  editRecipe(editedRecipe: Recipe, index: number) {
+    this.recipes[index] = editedRecipe;
+    this.observeRecipeArrayChangeEvent.emit();
+  }
+  deleteRecipe(deleteRecipe: Recipe) {
+
   }
 }

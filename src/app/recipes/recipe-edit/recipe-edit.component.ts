@@ -1,8 +1,10 @@
+import { Ingredient } from './../../shared/ingredient.model';
 import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { Recipe } from '../recipes.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -10,7 +12,7 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-  id: number;
+  selectedRecipeIndex: number;
   editMode = false;
   recipeForm: FormGroup;
 
@@ -20,8 +22,9 @@ export class RecipeEditComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
+          this.selectedRecipeIndex = +params['id'];
           this.editMode = params['id'] != null;
+          console.log(this.editMode)
           this.initForm();
         }
       );
@@ -33,7 +36,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
-      const recipe = this.recipeService.getSingleRecipe(this.id);
+      const recipe = this.recipeService.getSingleRecipe(this.selectedRecipeIndex);
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
@@ -67,7 +70,20 @@ export class RecipeEditComponent implements OnInit {
     );
   }
   onSubmit() {
-    console.log(this.recipeForm)
+    const formRecipe =
+      new Recipe
+        (
+          this.recipeForm.value.name,
+          this.recipeForm.value.description,
+          this.recipeForm.value.imagePath,
+          this.recipeForm.value.ingredients
+        )
+    if (!this.editMode) {
+      this.recipeService.addNewRecipe(formRecipe);
+    } else {
+      this.recipeService.editRecipe(formRecipe, this.selectedRecipeIndex);
+    }
+
   }
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(

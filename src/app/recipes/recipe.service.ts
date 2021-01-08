@@ -38,7 +38,8 @@ export class RecipeService {
     this.recipes[index] = editedRecipe;
     this.observeRecipeArrayChangeEvent.emit();
   }
-  deleteRecipe(deleteRecipe: Recipe) {
-
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.observeRecipeArrayChangeEvent.emit();
   }
 }

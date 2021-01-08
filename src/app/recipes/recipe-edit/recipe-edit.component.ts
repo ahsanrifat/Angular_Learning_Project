@@ -80,6 +80,8 @@ export class RecipeEditComponent implements OnInit {
         )
     if (!this.editMode) {
       this.recipeService.addNewRecipe(formRecipe);
+      this.editMode = false;
+      this.recipeForm.reset();
     } else {
       this.recipeService.editRecipe(formRecipe, this.selectedRecipeIndex);
     }

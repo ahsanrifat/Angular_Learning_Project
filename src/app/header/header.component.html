@@ -9,6 +9,9 @@
           <a style="cursor: pointer" routerLink="/recipes">Recipes</a>
         </li>
         <li routerLinkActive="active">
+          <a style="cursor: pointer" routerLink="/auth">Auth</a>
+        </li>
+        <li routerLinkActive="active">
           <a style="cursor: pointer" routerLink="/shopping-list"
             >Shopping List</a
           >
@@ -23,7 +26,9 @@
             <li>
               <a style="cursor: pointer" (click)="storeRecipes()">Save Data</a>
             </li>
-            <li><a style="cursor: pointer" (click)="fetchRecipes()">Fetch Data</a></li>
+            <li>
+              <a style="cursor: pointer" (click)="fetchRecipes()">Fetch Data</a>
+            </li>
           </ul>
         </li>
       </ul>

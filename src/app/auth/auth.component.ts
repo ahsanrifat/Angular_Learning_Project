@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
   authForm: NgForm;
   isLoginMode = true;
+  isLoading = false;
   constructor(private auth: AuthServiceService) { }
 
   ngOnInit(): void {
@@ -26,11 +27,14 @@ export class AuthComponent implements OnInit {
         // login check
       }
       else {
+        this.isLoading = true;
         this.auth.signup({ email: email, password: password, returnSecureToken: true })
           .subscribe((response) => {
             console.log(response);
+            this.isLoading = false;
           }, error => {
             console.log(error);
+            this.isLoading = false;
           });
       }
 

@@ -39,6 +39,7 @@ export class DataStorageService {
         ),
         tap(recipes => { this.recipeService.setRecipeArray(recipes); })
       )
+    // return this.http.get('https://angular-course-db-7d61d-default-rtdb.firebaseio.com/recipes.json');
 
     // .subscribe
     // (

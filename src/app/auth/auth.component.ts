@@ -11,6 +11,7 @@ export class AuthComponent implements OnInit {
   authForm: NgForm;
   isLoginMode = true;
   isLoading = false;
+  error: string = null;
   constructor(private auth: AuthServiceService) { }
 
   ngOnInit(): void {
@@ -32,8 +33,13 @@ export class AuthComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             this.isLoading = false;
-          }, error => {
-            console.log(error);
+          }, errorResponse => {
+            console.log(errorResponse);
+            switch (errorResponse.error.error.message) {
+              case 'EMAIL_EXISTS':
+                this.error = "Email Already Exists"
+            }
+            // this.error = 'An Error Occurred'
             this.isLoading = false;
           });
       }

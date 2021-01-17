@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit {
             // console.log(response);
             this.setUser(response);
             this.isLoading = false;
-            // this.router.navigate(['/recipes'])
+            this.router.navigate(['/recipes'])
           }, errorResponse => {
             this.error = "Error Occurred"
             // if (errorResponse.error.error.message) {
@@ -63,7 +63,7 @@ export class AuthComponent implements OnInit {
             // console.log(response);
             this.setUser(response);
             this.isLoading = false;
-            // this.router.navigate(['/recipes'])
+            this.router.navigate(['/recipes'])
           }, errorResponse => {
             this.error = "Error Occurred"
             // console.log(errorResponse);

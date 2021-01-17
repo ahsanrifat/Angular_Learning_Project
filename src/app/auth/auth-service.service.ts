@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponse, User } from './auth-model';
@@ -9,8 +10,8 @@ import { AuthResponse, User } from './auth-model';
 })
 export class AuthServiceService {
 
-  currentUserSubject = new Subject<User>();
-  constructor(private http: HttpClient) { }
+  currentUserSubject = new BehaviorSubject<User>(null);
+  constructor(private http: HttpClient, private router: Router) { }
   signup(user_signup: { email, password, returnSecureToken }) {
     return this.http.post<AuthResponse>
       ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLg9dUtnjPhdkAWFDJxPPuHwaCCMZujf8', user_signup);
@@ -30,5 +31,9 @@ export class AuthServiceService {
     return this.http.post<AuthResponse>
       ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBLg9dUtnjPhdkAWFDJxPPuHwaCCMZujf8', user_login);
 
+  }
+  logout() {
+    this.currentUserSubject.next(null);
+    this.router.navigate(['/auth']);
   }
 }

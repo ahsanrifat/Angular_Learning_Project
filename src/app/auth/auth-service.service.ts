@@ -10,7 +10,13 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
   signup(user_signup: { email, password, returnSecureToken }): Observable<any> {
-    return this.http.post<AuthResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLg9dUtnjPhdkAWFDJxPPuHwaCCMZujf8', user_signup);
+    return this.http.post<AuthResponse>
+      ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLg9dUtnjPhdkAWFDJxPPuHwaCCMZujf8', user_signup);
+
+  }
+  login(user_login: { email, password, returnSecureToken }): Observable<any> {
+    return this.http.post<AuthResponse>
+      ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBLg9dUtnjPhdkAWFDJxPPuHwaCCMZujf8', user_login);
 
   }
 }

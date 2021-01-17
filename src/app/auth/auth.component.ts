@@ -25,7 +25,20 @@ export class AuthComponent implements OnInit {
       const password = authForm.value.password
       console.log(email, password)
       if (this.isLoginMode) {
-        // login check
+        this.isLoading = true;
+        this.auth.login({ email: email, password: password, returnSecureToken: true })
+          .subscribe((response) => {
+            console.log(response);
+            this.isLoading = false;
+          }, errorResponse => {
+            this.error = "Error Occurred"
+            if (errorResponse.error.error.message) {
+
+              this.error = errorResponse.error.error.message
+            }
+            console.log(errorResponse);
+            this.isLoading = false;
+          });
       }
       else {
         this.isLoading = true;
@@ -34,6 +47,7 @@ export class AuthComponent implements OnInit {
             console.log(response);
             this.isLoading = false;
           }, errorResponse => {
+            this.error = "Error Occurred"
             console.log(errorResponse);
             switch (errorResponse.error.error.message) {
               case 'EMAIL_EXISTS':

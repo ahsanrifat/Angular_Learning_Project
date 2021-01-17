@@ -1,3 +1,4 @@
+import { AuthServiceService } from './../auth/auth-service.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
 
@@ -7,10 +8,16 @@ import { DataStorageService } from '../shared/data-storage.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isUserLoggedIn = false;
   @Output() featureSelected = new EventEmitter<string>();
-  constructor(private dataService: DataStorageService) { }
+  constructor(private dataService: DataStorageService, private authService: AuthServiceService) { }
 
   ngOnInit(): void {
+    this.authService.currentUserSubject.subscribe((user) => {
+      if (user) {
+        this.isUserLoggedIn = true
+      }
+    })
   }
   onSelect(feature: string) {
     this.featureSelected.emit(feature);
@@ -21,6 +28,10 @@ export class HeaderComponent implements OnInit {
   }
   fetchRecipes() {
     this.dataService.fetchRecipes().subscribe();
+  }
+  logout() {
+    console.log('Logout');
+    this.authService.currentUserSubject.next(null);
   }
 
 }
